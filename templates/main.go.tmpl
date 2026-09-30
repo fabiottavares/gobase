@@ -1,0 +1,20 @@
+package main
+
+import (
+	"log"
+
+	"{{.Module}}/internal/handler"
+	"{{.Module}}/internal/server"
+	"{{.Module}}/internal/service"
+)
+
+func main() {
+	svc := service.New()
+	h := handler.New(svc)
+	srv := server.New(":8080", h)
+
+	log.Println("listening on :8080")
+	if err := srv.Run(); err != nil {
+		log.Fatal(err)
+	}
+}

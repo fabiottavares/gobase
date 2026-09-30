@@ -1,0 +1,28 @@
+package server
+
+import (
+	"net/http"
+
+	"{{.Module}}/internal/handler"
+	"{{.Module}}/internal/middleware"
+)
+
+type Server struct {
+	http *http.Server
+}
+
+func New(addr string, h *handler.Handler) *Server {
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /hello", h.Hello)
+
+	return &Server{
+		http: &http.Server{
+			Addr:    addr,
+			Handler: middleware.Logging(mux),
+		},
+	}
+}
+
+func (s *Server) Run() error {
+	return s.http.ListenAndServe()
+}

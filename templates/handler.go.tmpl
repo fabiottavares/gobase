@@ -1,0 +1,20 @@
+package handler
+
+import (
+	"net/http"
+
+	"{{.Module}}/internal/service"
+)
+
+type Handler struct {
+	svc *service.Service
+}
+
+func New(svc *service.Service) *Handler {
+	return &Handler{svc: svc}
+}
+
+func (h *Handler) Hello(w http.ResponseWriter, r *http.Request) {
+	msg := h.svc.Greet(r.URL.Query().Get("name"))
+	w.Write([]byte(msg))
+}
