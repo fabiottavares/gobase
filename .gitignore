@@ -1,0 +1,38 @@
+# Binários compilados
+/bin/
+/gobase
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Binários de teste e cobertura
+*.test
+*.out
+coverage.txt
+coverage.html
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Dependências vendorizadas (descomente se não usar vendor)
+# vendor/
+
+# Workspace do Go
+go.work
+go.work.sum
+
+# IDEs e editores
+.idea/
+.vscode/
+*.swp
+*~
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
